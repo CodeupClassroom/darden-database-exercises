@@ -1,14 +1,14 @@
-# Add the LIMIT clause to our existing queries
+-- Add the LIMIT clause to our existing queries
 
-# Create a new SQL script named limit_exercises.sql.
+-- Create a new SQL script named limit_exercises.sql.
 
-# MySQL provides a way to return only unique results from our queries with the keyword DISTINCT. For example, to find all the unique titles within the company, we could run the following query:
+-- MySQL provides a way to return only unique results from our queries with the keyword DISTINCT. For example, to find all the unique titles within the company, we could run the following query:
 
 USE employees;
 
 SELECT DISTINCT title FROM titles;
 
-# List the first 10 distinct last name sorted in descending order. 
+-- List the first 10 distinct last name sorted in descending order. 
 
 SELECT DISTINCT last_name 
 FROM employees 

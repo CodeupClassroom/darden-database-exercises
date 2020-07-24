@@ -1,0 +1,15 @@
+.DS_Store
+.idea
+*.iml
+*.log
+.idea
+*.iml
+
+.ipynb_checkpoints/
+__pycache__
+
+.vscode/
+env.py
+
+secrets.txt
+*.csv

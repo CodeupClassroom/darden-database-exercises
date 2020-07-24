@@ -1,0 +1,58 @@
+Vocabulary so far:
+
+Relational Databases:
+- MySQL, PostgRES, Oracle, Access, MS SQL
+
+What we're relating is data on different tables that's related
+
+Keys and Indexes: 
+- Primary Key (emp_no on employees table, dept_no on departments table)
+- Foreign Key (Table A's primary key is called a foreign key when it's on Table B)
+    - Example: emp_no on employees is primary, emp_no on salaries table is foreign key.
+    - What's happening: each salary belongs to one emp_no and one emp_no could have multiple salaries (over time)
+- Composite Keys (when we build a key out of 2+ existing columns)
+- Unique Index (this specifies a constraint of zero duplication)
+    - Example: we would use unique index on email addresses or usernames on a users table.
+- Keys make for faster queries
+- Keys make for specific kinds of constraints 
+    - like unique index for email address so we don't have duplicates
+    - The foreign key constraint on Salaries table says that each salary must have an emp_no that exists on the employees table.
+    - These constraints mean we have better integrity of our data
+- Keys relate records from different tables that have a relationship.
+- Scenario, we have a small table of quotes. But we're going to release our quotes_database api on hackernews and crunchbase and then get product placement in the silicon valley show.
+    - ensure that nobody can save a duplicate quote
+    ALTER TABLE quotes
+    ADD UNIQUE (content);
+    INSERT INTO quotes (content, author) VALUES ("You miss 100% of the shots you don't take", "Wayne Gretzky"); -- inserts OK
+    INSERT INTO quotes (content, author) VALUES ("You miss 100% of the shots you don't take", "Michael Scott"); -- throws an error because we can't have duplicated content column
+    INSERT INTO quotes (content, author) VALUES ("You miss 100% of the shots you don't take - 'Wayne Gretzky'", "Michael Scott"); -- inserts OK because its column field is unique.
+
+Relationships:
+Example: a username has one and only one password. Username and password would be on the same table... 
+One to One relatioships like username/password or emp_no and birth_date exist on the same exact table.
+
+One to Many (or Many to One)
+    Example 1: how many salaries (over time) does an employee have? 
+        One employee has many salary entries
+        many salary entries belong to one employee.
+    Example 2:
+        One author has many blog posts. and many blog posts can belong to one author.
+
+Many to Many relationship  (technically under the hood, it's a couple of 1 to manys together)
+Example 1:
+    Consider the dept_emp table.
+    One department could have many employyes
+    One employee could belong to many departments (currently or historically)
+
+Example:
+    Consider a blogging platform with categories
+    One blog post could have multiple categories
+    And one category could have multiple blog posts
+
+The mechanism for creating a many-to-many relationship is called a jo-iner table, XREF table, relationship table...
+The employees table has zero foreign keys. Only the emp_no primary key.
+The deparments table has zero foreign keys. Only the dept_no primary key.
+The dept_emp table has two foreign keys pointing an emp_no to a dept_no.
+
+Convention:
+The joiner table is named after tableA and tableB like tableA_tableB
