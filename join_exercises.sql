@@ -1,4 +1,13 @@
+use employees;
 
+select title, count(title) as count
+from titles
+join dept_emp on dept_emp.emp_no = titles.emp_no
+join departments on dept_emp.dept_no = departments.dept_no
+where titles.to_date > curdate()
+and dept_emp.to_date > curdate()
+and departments.dept_name = 'Customer Service'
+group by title;
 
 -- Find the name of all departments currently managed by women.
 select e.first_name, e.last_name
@@ -84,11 +93,3 @@ where salaries.to_date > curdate()
 and dept_manager.to_date > curdate()
 order by salary desc
 limit 1;
-
-
-/* Bonus Find the names of all current employees, their department name, and their current manager's name.
-240,124 Rows
-
-Employee Name | Department Name  |  Manager Name
---------------|------------------|-----------------
- Huan Lortz   | Customer Service | Yuchang Weedman */
